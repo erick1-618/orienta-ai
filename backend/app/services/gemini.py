@@ -1,12 +1,14 @@
 from os import getenv
 from dotenv import load_dotenv
-from google import genai
+from groq import Groq
 import json
 
 load_dotenv('.env')
 
-# Conexão com o Gemini
-client = genai.Client(api_key=getenv("GEMINI_API_KEY"))
+client = Groq(api_key=getenv("LLM_API_KEY"))
+
+MODEL = "llama-3.3-70b-versatile"
+
 
 def get_json_from_raw_text(raw_text):
     PROMPT_BASE = """Você é um extrator de informações estruturadas de currículos Lattes (CNPq).
@@ -38,12 +40,14 @@ def get_json_from_raw_text(raw_text):
 
     PROMPT_FINAL = PROMPT_BASE + raw_text
 
-    interaction = client.interactions.create(
-        model="gemini-3.5-flash",
-        input=PROMPT_FINAL
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[{"role": "user", "content": PROMPT_FINAL}],
+        response_format={"type": "json_object"},
     )
 
-    return interaction.output_text
+    return response.choices[0].message.content
+
 
 def compara_linha_pesquisa(linha_pesquisa, professores):
     """
@@ -86,10 +90,11 @@ def compara_linha_pesquisa(linha_pesquisa, professores):
     Liste no máximo os 3 professores mais adequados, em ordem decrescente de score.
     Se nenhum professor tiver relação clara com a linha de pesquisa, retorne a lista "recomendacoes" vazia."""
 
-    interaction = client.interactions.create(
-        model="gemini-3.5-flash",
-        input=prompt
+    response = client.chat.completions.create(
+        model=MODEL,
+        messages=[{"role": "user", "content": prompt}],
+        response_format={"type": "json_object"},
     )
 
-    cleaned = interaction.output_text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+    cleaned = response.choices[0].message.content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     return json.loads(cleaned)
