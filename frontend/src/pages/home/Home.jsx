@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import RecomendacaoCard from '../../components/recomendacaoCard/RecomendacaoCard'
 import './Home.css'
+import lupa from '../../assets/lupa.png'
 
 const apiUrl = import.meta.env.VITE_API_URL
 const API_URL = `${apiUrl}/professores/comparar`
@@ -83,7 +84,7 @@ export default function Home() {
                     disabled={loading}
                 />
                 <img
-                    src="src/assets/lupa.png"
+                    src={lupa}
                     alt="Lupa"
                     onClick={handleSend}
                     style={{ opacity: loading ? 0.4 : 0.7, pointerEvents: loading ? 'none' : 'auto' }}

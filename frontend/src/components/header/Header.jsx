@@ -2,6 +2,7 @@
 import React from "react";
 import "./Header.css";
 import {useNavigate} from "react-router-dom";
+import logo from "../../assets/logo.png"
 
 const Header = () => {
 
@@ -25,7 +26,7 @@ const Header = () => {
 
     return (
         <header>
-            <img src="src/assets/logo.png" alt="Logo Orienta AI" id="logo" onClick={handleClickHome}/>
+            <img src={logo} alt="Logo Orienta AI" id="logo" onClick={handleClickHome}/>
             <div className="header-right">
                 <p className="underline-anim" onClick={handleClickPesquisadores}>Base de Pesquisadores</p>
                 <p className="underline-anim" onClick={handleClickSobre}>Sobre</p>

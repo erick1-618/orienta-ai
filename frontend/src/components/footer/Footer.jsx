@@ -1,6 +1,8 @@
 // Footer react component
 import React from "react";
 import "./Footer.css";
+import eicIcon from "../../assets/eic.png";
+import cefetIcon from "../../assets/cefet-logo.png";
 
 const Footer = () => {
     return (
@@ -12,10 +14,10 @@ const Footer = () => {
             
             <div className="footer-content-right">
                 <a href="https://eic.cefet-rj.br/portal/">
-                    <img src="src/assets/eic.png" alt="Logo EIC" id="logo-eic"/>
+                    <img src={eicIcon} alt="Logo EIC" id="logo-eic"/>
                 </a>
                 <a href="https://www.cefet-rj.br/">
-                    <img src="src/assets/cefet-logo.png" alt="Logo CEFET-RJ" id="logo-cefet"/>
+                    <img src={cefetIcon} alt="Logo CEFET-RJ" id="logo-cefet"/>
                 </a>
             </div>
         </footer>

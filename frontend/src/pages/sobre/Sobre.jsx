@@ -1,5 +1,7 @@
 import React from 'react'
 import './Sobre.css'
+import github from '../../assets/github.png'
+import linkedin from '../../assets/linkedin.png'
 
 export default function Sobre() {
     return (
@@ -53,7 +55,7 @@ export default function Sobre() {
                                 rel="noopener noreferrer"
                                 className="sobre-link"
                             >
-                                <img src="src/assets/github.png" alt="GitHub" />
+                                <img src={github} alt="GitHub" />
                                 GitHub
                             </a>
                             
@@ -63,7 +65,7 @@ export default function Sobre() {
                                 rel="noopener noreferrer"
                                 className="sobre-link"
                             >
-                                <img src="src/assets/linkedin.png" alt="LinkedIn" />
+                                <img src={linkedin} alt="LinkedIn" />
                                 LinkedIn
                             </a>
                         </div>
