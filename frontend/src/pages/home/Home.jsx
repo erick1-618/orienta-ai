@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import RecomendacaoCard from '../../components/recomendacaoCard/RecomendacaoCard'
 import './Home.css'
 
-const API_URL = 'http://localhost:8000/professores/comparar'
+const apiUrl = import.meta.env.VITE_API_URL
+const API_URL = `${apiUrl}/professores/comparar`
 
 export default function Home() {
     const textareaRef = useRef(null)

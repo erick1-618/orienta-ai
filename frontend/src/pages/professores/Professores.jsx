@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import ProfessorCard from '../../components/professorCard/ProfessorCard'
 import './Professores.css'
 
-const API_URL = 'http://localhost:8000/professores'
+const apiUrl = import.meta.env.VITE_API_URL
+const API_URL = `${apiUrl}/professores`
 
 export default function Professores() {
     const navigate = useNavigate()

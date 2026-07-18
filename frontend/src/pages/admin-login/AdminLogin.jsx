@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AdminLogin.css'
 
-const API_URL = 'http://localhost:8000/professores'
+const apiUrl = import.meta.env.VITE_API_URL
+const API_URL = `${apiUrl}/professores`
 
 export default function AdminLogin() {
     const [token, setToken] = useState('')

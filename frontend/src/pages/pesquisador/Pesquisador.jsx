@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import './Pesquisador.css'
 
-const API_URL = 'http://localhost:8000/professores'
+const apiUrl = import.meta.env.VITE_API_URL
+const API_URL = `${apiUrl}/professores`
 
 export default function Pesquisador() {
     const { id } = useParams()
