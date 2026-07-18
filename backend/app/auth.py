@@ -4,6 +4,7 @@ from fastapi import Header, HTTPException
 
 ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN")
 
+# verificar_admin
 def verificar_admin(authorization: str = Header(None)):
     if authorization is None or not authorization.startswith("Bearer "):
         print(authorization)
