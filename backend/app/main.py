@@ -12,7 +12,8 @@ async def root():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # origem do seu Vite (ajuste se a porta for outra)
+    allow_origins=["http://localhost:5173",
+                   "https://orienta-ai-brown.vercel.app"],  # origem do seu Vite (ajuste se a porta for outra)
     allow_credentials=True,
     allow_methods=["*"],  # ou especifique ["GET", "POST", "OPTIONS"]
     allow_headers=["*"],
