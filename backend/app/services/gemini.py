@@ -52,6 +52,7 @@ def compara_linha_pesquisa(linha_pesquisa, professores):
     """
     contexto = "\n\n---\n\n".join(
         f"PROFESSOR: {p['nome']}\n"
+        f"id: {p['id']}\n"
         f"Resumo: {p.get('resumo', '')}\n"
         f"Linhas de pesquisa: {', '.join(p.get('linhas_de_pesquisa', []))}\n"
         f"Áreas de atuação: {', '.join(p.get('areas_de_atuacao', []))}\n"
@@ -76,7 +77,8 @@ def compara_linha_pesquisa(linha_pesquisa, professores):
         {{
         "nome": "nome do professor",
         "score": "número de 0 a 100 indicando aderência à linha de pesquisa",
-        "justificativa": "1-2 frases explicando o porquê, citando o trecho do perfil que embasa"
+        "justificativa": "1-2 frases explicando o porquê, citando o trecho do perfil que embasa",
+        "id": "id do professor"
         }}
     ]
     }}

@@ -7,6 +7,7 @@ from app.services.researcher import (
     atualizar_professor,
     listar_professores,
     deletar_professor,
+    get_professor_by_id
 )
 from app.services.gemini import compara_linha_pesquisa
 from app.auth import verificar_admin
@@ -30,6 +31,10 @@ async def _salvar_pdf_temp(pdf: UploadFile) -> str:
 @router.get("")
 def get_professores():
     return listar_professores()
+
+@router.get("/{professor_id}")
+def get_professor(professor_id: str):
+    return get_professor_by_id(professor_id)
 
 @router.post("/comparar")
 async def post_comparar_linha_pesquisa(request: Request):

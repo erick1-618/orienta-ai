@@ -1,4 +1,42 @@
-h1 {
-    background-color: yellow;
+header {
+    background-color: #212d69;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 15px;
+}
+
+header p {
+    margin: 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.underline-anim {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 2px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.underline-anim:hover {
+    border-color: #ffffff;
+}
+
+#logo {
+    width: 150px;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }

@@ -78,3 +78,10 @@ def atualizar_professor(pdf_path, professor_id):
     perfil = get_json(pdf_path)
     salvar_professor(perfil, professor_id=professor_id)
     return perfil
+
+def get_professor_by_id(id):
+    professores = _ler_professores()
+    idx = next((i for i, p in enumerate(professores) if p.get("id") == id), None)
+    if idx is None:
+        raise ValueError(f"Professor com id {id} não encontrado")
+    return professores[idx]

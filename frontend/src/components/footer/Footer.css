@@ -1,0 +1,29 @@
+footer {
+    background-color: #172155;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+}
+
+.footer-content-left p {
+    text-align: left;
+    margin-left: 15px;
+    font-weight: lighter;
+}
+
+.footer-content-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#logo-eic {
+    width: 40px;
+}
+
+#logo-cefet {
+    width: 125px;
+}

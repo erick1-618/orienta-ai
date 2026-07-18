@@ -1,0 +1,179 @@
+.admin-body {
+    flex: 1;
+    background-color: #ebf3ff;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-header {
+    width: 100%;
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-header h1 {
+    color: #041049;
+    font-size: 24px;
+}
+
+.logout-btn {
+    background: none;
+    border: 1px solid #041049;
+    color: #041049;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #041049;
+    color: #fff;
+}
+
+.admin-form, .admin-lista {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 28px 32px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 24px;
+}
+
+.admin-form h2, .admin-lista h2 {
+    color: #041049;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.admin-hint {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 16px;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.admin-form input[type="file"] {
+    font-size: 13px;
+}
+
+.admin-form button {
+    background-color: #041049;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-form button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.admin-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #ebf3ff;
+}
+
+.admin-item:last-child {
+    border-bottom: none;
+}
+
+.admin-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.admin-item-nome {
+    font-size: 14px;
+    color: #444;
+    font-weight: 600;
+}
+
+.admin-item-update {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-item-update input[type="file"] {
+    font-size: 12px;
+}
+
+.admin-item-update button {
+    background-color: #041049;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.admin-item-update button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.admin-item-update .cancelar-btn {
+    background: none;
+    color: #444;
+    border: 1px solid #ccc;
+}
+
+.admin-item-acoes {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.admin-item-acoes button {
+    background: none;
+    border: 1px solid #041049;
+    color: #041049;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-item-acoes button:hover {
+    background-color: #041049;
+    color: #fff;
+}
+
+.admin-item-acoes .remover-btn {
+    border-color: #b00020;
+    color: #b00020;
+}
+
+.admin-item-acoes .remover-btn:hover {
+    background-color: #b00020;
+    color: #fff;
+}
+
+.admin-erro {
+    color: #b00020;
+}

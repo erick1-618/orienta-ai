@@ -1,0 +1,93 @@
+.sobre-body {
+    flex: 1;
+    background-color: #ebf3ff;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+}
+
+.sobre-container {
+    max-width: 750px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sobre-secao h1 {
+    color: #041049;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.sobre-secao h2 {
+    color: #041049;
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.problematica {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 32px 40px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.problematica p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.problematica p:last-child {
+    margin-bottom: 0;
+}
+
+.problematica strong {
+    color: #041049;
+}
+
+.sobre-mim-card {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 32px 40px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.sobre-mim-card p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.sobre-links {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.sobre-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #ebf3ff;
+    color: #041049;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sobre-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px rgba(4, 16, 73, 0.2);
+}
+
+.sobre-link img {
+    width: 18px;
+    height: 18px;
+}
