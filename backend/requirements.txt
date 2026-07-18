@@ -4,3 +4,4 @@ liteparse
 dotenv
 google-genai
 python-multipart
+filelock
