@@ -91,3 +91,11 @@
     width: 18px;
     height: 18px;
 }
+
+#lattes-link {
+    color: #041049;
+}
+
+#lattes-link:hover {
+    text-decoration: underline;
+}

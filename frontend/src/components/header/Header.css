@@ -31,11 +31,8 @@ header p {
     width: 150px;
 }
 
-#logo:hover {
-    cursor: pointer;
-}
-
 .header-right {
+    margin-left: 20px;
     display: flex;
     align-items: center;
     gap: 20px;

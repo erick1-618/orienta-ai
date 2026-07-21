@@ -23,7 +23,7 @@ export default function Pesquisador() {
                 const data = await response.json()
                 setProfessor(data)
             } catch (err) {
-                setErro('Não foi possível carregar os dados deste pesquisador.')
+                setErro('Não foi possível carregar os dados deste professor.')
                 console.error(err)
             } finally {
                 setLoading(false)
@@ -38,7 +38,7 @@ export default function Pesquisador() {
             <div className="pesquisador-body">
                 <div className="loading">
                     <div className="spinner" />
-                    <p>Carregando pesquisador...</p>
+                    <p>Carregando professor...</p>
                 </div>
             </div>
         )
