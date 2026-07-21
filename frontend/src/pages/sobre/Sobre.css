@@ -92,10 +92,10 @@
     height: 18px;
 }
 
-#lattes-link {
+.link {
     color: #041049;
 }
 
-#lattes-link:hover {
+.link:hover {
     text-decoration: underline;
 }

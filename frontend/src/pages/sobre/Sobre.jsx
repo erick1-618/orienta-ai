@@ -11,23 +11,26 @@ export default function Sobre() {
                 <section className="sobre-secao problematica">
                     <h1>Sobre o Orienta.ai</h1>
                     <p>
-                        Escolher um orientador é uma das decisões mais importantes — e mais difíceis —
-                        na jornada de um estudante de pós-graduação. Encontrar um professor cuja linha
+                        Escolher um orientador é uma das decisões mais importantes 
+                        na jornada de um estudante. Encontrar um professor cuja linha
                         de pesquisa realmente se alinhe ao tema de interesse do aluno geralmente exige
                         vasculhar dezenas de currículos Lattes, páginas de grupos de pesquisa e
-                        publicações espalhadas, um processo manual, demorado e sujeito a deixar de lado
-                        orientadores em potencial só porque não são os mais conhecidos ou visíveis.
+                        publicações espalhadas, um processo manual e demorado.
                     </p>
                     <p>
                         O Orienta.ai nasceu para resolver esse problema: usando inteligência artificial
                         para interpretar o tema de pesquisa do estudante e cruzá-lo com os perfis reais
-                        dos professores, indicando não apenas quem pode orientar, mas <strong>por que</strong> aquele
-                        professor é uma boa escolha — com justificativas claras, baseadas na produção
+                        dos professores, indicando não apenas quem pode orientar, mas por que aquele
+                        professor é uma boa escolha, com justificativas claras, baseadas na produção
                         acadêmica de cada um.
                     </p>
                     <p>
-                        Todos os dados utilizados pela aplicação são provenientes da plataforma
-                        pública de curriculos <strong>Lattes</strong> do CNPq: <a id="lattes-link" href="https://lattes.cnpq.br/" target="_blank" rel="noopener noreferrer">https://lattes.cnpq.br/</a>.
+                        Todos os dados utilizados pela aplicação são provenientes da <strong><a className="link" href="https://www.lattes.cnpq.br/" target="_blank" rel="noopener noreferrer">Plataforma Lattes</a></strong>,
+                        base pública de pesquisadores brasileiros. Para adicionar novos professores, o sistema faz a ingestão de PDFs de currículos Lattes para montar o perfil do pesquisador.
+                    </p>
+                    <p>
+                        Essa instância de exemplo do Orienta.ai contempla todos os professores
+                        da <strong><a className="link" href="https://eic.cefet-rj.br/portal/" target="_blank" rel="noopener noreferrer">Escola de Informática e Computação (EIC)</a></strong> do <strong><a className="link" href="https://www.cefet-rj.br/" target="_blank" rel="noopener noreferrer">CEFET/RJ</a></strong>, sendo facilmente extensível para outras instituições.
                     </p>
                 </section>
 
