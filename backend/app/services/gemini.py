@@ -9,6 +9,7 @@ load_dotenv('.env')
 client = Groq(api_key=getenv("LLM_API_KEY"))
 
 MODEL = "llama-3.3-70b-versatile"
+MODEL_FAST = "llama-3.1-8b-instant"
 
 
 def get_json_from_raw_text(raw_text):
@@ -42,7 +43,7 @@ def get_json_from_raw_text(raw_text):
     PROMPT_FINAL = PROMPT_BASE + raw_text
 
     response = client.chat.completions.create(
-        model=MODEL,
+        model=MODEL_FAST,
         messages=[{"role": "user", "content": PROMPT_FINAL}],
         response_format={"type": "json_object"},
     )

@@ -13,34 +13,27 @@ def parse_llm_json(raw: str) -> dict:
     cleaned = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
     return json.loads(cleaned)
 
-import re
-
 def filtrar_secoes_relevantes(texto: str) -> str:
-    secoes_relevantes = [
-        "Identificação", "Formação acadêmica/titulação", "Atuação Profissional",
-        "Linhas de pesquisa", "Projetos de pesquisa", "Áreas de atuação",
-        "Produção bibliográfica",
-    ]
-    secoes_descartar = [
-        "Bancas", "Orientações", "Eventos", "Produção técnica",
-        "Educação e Popularização de C & T", "Organização de eventos",
-    ]
+    """
+    Otimiza textos brutos de PDFs Lattes (incluindo CVs com +100 páginas):
+    1. Trunca seções massivas irrelevantes (Bancas, Orientações, Eventos, Cursos, etc.)
+    2. Limita o volume da seção de Produção Bibliográfica para os artigos mais recentes
+    3. Aplica trava de segurança em no máximo 12.000 caracteres (~3.000 tokens)
+    """
+    # 1. Cortar seções de grande volume que não impactam a extração do perfil técnico
+    padrao_corte = r'\n\s*(Bancas|Orientações|Eventos|Participação em eventos|Organização de eventos|Demais tipos de produção técnica|Prêmios e títulos)\b'
+    match = re.search(padrao_corte, texto, re.IGNORECASE)
+    if match:
+        texto = texto[:match.start()]
 
-    marcadores = secoes_relevantes + secoes_descartar
-    posicoes = []
-    for marcador in marcadores:
-        for m in re.finditer(re.escape(marcador), texto):
-            posicoes.append((m.start(), marcador))
-    posicoes.sort()
+    # 2. Se a Produção Bibliográfica for extensa, limitar o trecho (os mais recentes ficam no início)
+    prod_match = re.search(r'\n\s*Produção bibliográfica\b', texto, re.IGNORECASE)
+    if prod_match:
+        inicio_prod = prod_match.start()
+        texto = texto[:inicio_prod + 5000]
 
-    partes = {}
-    for i, (idx, marcador) in enumerate(posicoes):
-        fim = posicoes[i + 1][0] if i + 1 < len(posicoes) else len(texto)
-        # só guarda a PRIMEIRA ocorrência de cada seção
-        if marcador not in partes:
-            partes[marcador] = texto[idx:fim].strip()
-
-    return "\n\n".join(partes[s] for s in secoes_relevantes if s in partes)
+    # 3. Trava de segurança no comprimento total (~3.000 tokens)
+    return texto[:12000].strip()
 
 def get_json(pdf_path):
     text = extract_text(pdf_path)
