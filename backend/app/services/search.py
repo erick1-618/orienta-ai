@@ -84,3 +84,38 @@ def pre_filtrar_professores(linha_pesquisa: str, professores: list, top_k: int =
     except Exception:
         # Em caso de qualquer falha na vetorização (ex: vocabulário vazio), fallback gracioso
         return professores[:top_k]
+
+
+def calcular_scores_tfidf(linha_pesquisa: str, professores: list) -> dict:
+    """
+    Calcula a similaridade TF-IDF entre a linha de pesquisa e cada professor.
+    Retorna um dicionário mapeando o ID do professor para o score calculado (0 a 100).
+    """
+    if not professores:
+        return {}
+
+    query_norm = normalizar_texto(linha_pesquisa)
+    if not query_norm:
+        return {p["id"]: 0 for p in professores}
+
+    docs_professores = [montar_documento_professor(p) for p in professores]
+    corpus = [query_norm] + docs_professores
+
+    try:
+        vectorizer = TfidfVectorizer(ngram_range=(1, 2), sublinear_tf=True)
+        tfidf_matrix = vectorizer.fit_transform(corpus)
+
+        query_vec = tfidf_matrix[0:1]
+        prof_vecs = tfidf_matrix[1:]
+
+        similarities = cosine_similarity(query_vec, prof_vecs).flatten()
+
+        scores = {}
+        for idx, sim in enumerate(similarities):
+            # Converter a similaridade de cosseno para 0-100
+            score_val = int(round(sim * 100))
+            scores[professores[idx]["id"]] = max(0, min(100, score_val))
+        return scores
+    except Exception:
+        return {p["id"]: 0 for p in professores}
+

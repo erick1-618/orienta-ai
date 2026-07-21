@@ -2,7 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 from groq import Groq
 import json
-from app.services.search import pre_filtrar_professores
+from app.services.search import pre_filtrar_professores, calcular_scores_tfidf
 
 load_dotenv('.env')
 
@@ -98,11 +98,37 @@ def compara_linha_pesquisa(linha_pesquisa, professores, top_k=5):
     Liste no máximo os 3 professores mais adequados, em ordem decrescente de score.
     Se nenhum professor tiver relação clara com a linha de pesquisa, retorne a lista "recomendacoes" vazia."""
 
-    response = client.chat.completions.create(
-        model=MODEL,
-        messages=[{"role": "user", "content": prompt}],
-        response_format={"type": "json_object"},
-    )
-
-    cleaned = response.choices[0].message.content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
-    return json.loads(cleaned)
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[{"role": "user", "content": prompt}],
+            response_format={"type": "json_object"},
+        )
+        cleaned = response.choices[0].message.content.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        return json.loads(cleaned)
+    except Exception as e:
+        print(f"Erro na API do Groq (limite de requisições ou outro): {e}. Executando fallback local.")
+        # Limita aos 3 melhores candidatos pré-filtrados
+        candidatos = professores_candidatos[:3]
+        scores = calcular_scores_tfidf(linha_pesquisa, candidatos)
+        
+        recomendacoes = []
+        for p in candidatos:
+            palavras = p.get("palavras_chave", [])
+            if palavras:
+                justificativa = "Palavras-chave: " + ", ".join(palavras)
+            else:
+                areas = p.get("areas_de_atuacao", [])
+                if areas:
+                    justificativa = "Áreas de atuação: " + ", ".join(areas)
+                else:
+                    justificativa = "Sem palavras-chave cadastradas no currículo."
+            
+            recomendacoes.append({
+                "nome": p["nome"],
+                "score": scores.get(p["id"], 0),
+                "justificativa": justificativa,
+                "id": p["id"]
+            })
+            
+        return {"recomendacoes": recomendacoes}
