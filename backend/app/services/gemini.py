@@ -2,6 +2,7 @@ from os import getenv
 from dotenv import load_dotenv
 from groq import Groq
 import json
+from app.services.search import pre_filtrar_professores
 
 load_dotenv('.env')
 
@@ -49,11 +50,17 @@ def get_json_from_raw_text(raw_text):
     return response.choices[0].message.content
 
 
-def compara_linha_pesquisa(linha_pesquisa, professores):
+def compara_linha_pesquisa(linha_pesquisa, professores, top_k=5):
     """
     linha_pesquisa: string com o interesse de pesquisa do aluno
     professores: lista de dicts (o JSON com todos os professores)
+    top_k: número máximo de candidatos para pré-filtragem (default 5)
     """
+    if not professores:
+        return {"recomendacoes": []}
+
+    professores_candidatos = pre_filtrar_professores(linha_pesquisa, professores, top_k=top_k)
+
     contexto = "\n\n---\n\n".join(
         f"PROFESSOR: {p['nome']}\n"
         f"id: {p['id']}\n"
@@ -63,10 +70,10 @@ def compara_linha_pesquisa(linha_pesquisa, professores):
         f"Projetos: {', '.join(p.get('projetos_pesquisa', []))}\n"
         f"Publicações recentes: {', '.join(p.get('publicacoes_recentes', []))}\n"
         f"Palavras-chave: {', '.join(p.get('palavras_chave', []))}"
-        for p in professores
+        for p in professores_candidatos
     )
 
-    prompt = f"""Você tem os perfis de pesquisa de {len(professores)} professores de um departamento.
+    prompt = f"""Você tem os perfis de pesquisa de {len(professores_candidatos)} professores pré-selecionados de um departamento.
 
     {contexto}
 

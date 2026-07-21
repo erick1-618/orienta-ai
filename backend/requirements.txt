@@ -5,3 +5,5 @@ dotenv
 groq
 python-multipart
 filelock
+scikit-learn
+pytest
